@@ -1,0 +1,288 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: #00FF00;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#00FF00 1px, transparent 1px), linear-gradient(90deg, #00FF00 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.1; /* Very subtle effect */
+    animation: gridMove 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes gridMove {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-50px, -50px); }
+}
+
+
+header {
+    background-color: black;
+    color: #00FF00;
+    padding: 10px 0;
+    border-bottom: 1px solid #00FF00;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    z-index: 100;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #00FF00;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-shadow 1s;
+}
+
+nav ul li a:hover {
+    text-shadow: 0 0 10px #00FF00;
+    color: #000000;
+}
+section {
+    margin-bottom: 40px;
+    border: 1px solid #00FF00;
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.typed-message h1 {
+    font-size: 3em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.3em solid #00FF00; /* Cursor effect */
+    letter-spacing: .02em;
+    
+    width: 0; /* Start hidden */
+    animation: 
+        typing 3.6s steps(8), 
+        blink-caret 0.75s step-end infinite;
+    animation-fill-mode: forwards; /* Hold the last frame after animation ends */
+    animation-delay: 4s;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 9ch; } /* Adjust according to your welcome message */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #00FF00; }
+}
+
+h2 {
+    color: #00FF00;
+    position: relative;
+    text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00;
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00; }
+    50% { text-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00; }
+    100% { text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00; }
+}
+
+main {
+    padding: 20px;
+}
+
+
+
+/* Scroll to Top Button */
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00FF00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: black;
+    color: #00FF00;
+    border-top: 1px solid #00FF00;
+}
+
+.skills-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #00FF00;
+}
+
+.skills-section {
+    width: 45%;
+}
+
+#skillsCanvas {
+    display: block;
+    border: 1px solid #00FF00;
+    width: 100%;
+    height: 300px;
+    background-color: black;
+}
+
+/* Make room for coursework */
+.relevant-coursework {
+    margin-top: 40px;
+    padding: 10px;
+    border: 1px solid #00FF00;
+}
+
+.relevant-coursework p {
+    line-height: 1.6;
+}
+
+/* General section styling */
+section {
+    max-width: 1200px; /* Matches the width of other sections */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Specific styling for the skills container */
+.skills-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%; /* Full width, within the section constraints */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Canvas wrapper (for each canvas inside the skills section) */
+.canvas-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #00FF00;
+    box-sizing: border-box;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+/* Center the titles inside each canvas-wrapper */
+.canvas-wrapper h2 {
+    text-align: center;
+    color: #00FF00;
+    margin: 0;
+    padding: 0;
+}
+
+/* Canvas styling */
+canvas {
+    display: block;
+    background-color: black;
+    border: 1px solid #00FF00;
+    width: 100%;
+    max-width: 400px; /* Ensure canvases don't stretch too wide */
+    height: 300px;
+    margin-top: 10px; /* Space between title and canvas */
+}
+
+/* Responsive behavior: shrink the gap as the window size decreases */
+@media (max-width: 900px) {
+    .skills-container {
+        gap: 10px;
+    }
+}
+
+/* Stack the canvases vertically when the window size is smaller */
+@media (max-width: 700px) {
+    .skills-container {
+        flex-direction: column;
+        align-items: center; /* Center the canvases when stacked */
+    }
+
+    .canvas-wrapper {
+        width: 100%; /* Full width when stacked */
+    }
+
+    canvas {
+        max-width: 100%; /* Ensure canvases fill the width of the container */
+    }
+}
+
+/* Social Media Section */
+#contact-info {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+#contact-info h2 {
+    color: #00FF00;
+}
+
+/* Social links container */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Style for each icon */
+.social-icon {
+    color: #00FF00;
+    font-size: 2em;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #FFFFFF;
+}
