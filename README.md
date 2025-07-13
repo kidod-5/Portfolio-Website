@@ -25,10 +25,10 @@ This portfolio was my first hands-on experience in web development. I wanted to 
 The site includes:
 
 - **Intro/About section** – Background and motivation
+- **Tools** - Interactive objects symbolizing tools and languages I am familiar with
 - **Projects** – Selected work displayed as “commands”
 - **Contact** – Email and social media links embedded in a stylized output
 
-I hosted the site under my personal domain: **[kidodouglas.me](https://www.kidodouglas.me)**.
 
 ---
 
