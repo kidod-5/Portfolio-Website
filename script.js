@@ -1,21 +1,26 @@
  // Handling both canvases
  const languagesCanvas = document.getElementById('languagesCanvas');
  const toolsCanvas = document.getElementById('toolsCanvas');
- 
+ const librariesCanvas = document.getElementById('librariesCanvas'); // New canvas for libraries/frameworks
+
  // Context for each canvas
  const ctx1 = languagesCanvas.getContext('2d');
  const ctx2 = toolsCanvas.getContext('2d');
- 
+ const ctx3 = librariesCanvas.getContext('2d');
+
  // Set canvas sizes
  languagesCanvas.width = languagesCanvas.offsetWidth;
  languagesCanvas.height = 300;
  toolsCanvas.width = toolsCanvas.offsetWidth;
  toolsCanvas.height = 300;
- 
+ librariesCanvas.width = librariesCanvas.offsetWidth;
+ librariesCanvas.height = 300;
+
  const gravity = 0.2;
  const bounceFactor = 0.7;
  const languageCircles = [];
  const toolCircles = [];
+ const libFrameCircles = [];
  let draggingCircle = null;
  let offsetX, offsetY;
  
@@ -166,9 +171,8 @@
          { label: 'Github', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg' },
          { label: 'Eclipse', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eclipse/eclipse-original.svg' },
          { label: 'VSCode', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
-         { label: 'Numpy', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg' },
-         { label: 'Matplotlib', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg' },
-         { label: 'Cv2', imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg' }
+         { label: 'MongoDB', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
+         {label: 'NPM', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg'},
      ];
  
      tools.forEach(tool => {
@@ -178,6 +182,25 @@
          const dx = (Math.random() - 0.5) * 2;
          const dy = (Math.random() - 0.5) * 2;
          toolCircles.push(new Circle(x, y, radius, dx, dy, tool.label, tool.imgSrc, ctx2));
+     });
+ }
+ function createLibFrameCircles() {
+     const tools = [
+         { label: 'Numpy', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg' },
+         { label: 'Matplotlib', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg' },
+         { label: 'Cv2', imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg' },
+         {label: 'React', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg'},
+         {label: 'Node.js', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg'},
+         {label: 'Express', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg'},
+     ];
+ 
+     tools.forEach(tool => {
+         const radius = 40;
+         const x = Math.random() * (librariesCanvas.width - 2 * radius) + radius;
+         const y = Math.random() * (librariesCanvas.height - 2 * radius) + radius;
+         const dx = (Math.random() - 0.5) * 2;
+         const dy = (Math.random() - 0.5) * 2;
+         libFrameCircles.push(new Circle(x, y, radius, dx, dy, tool.label, tool.imgSrc, ctx3));
      });
  }
  
@@ -193,20 +216,28 @@
      toolCircles.forEach(circle => circle.update(toolCircles, toolsCanvas.width, toolsCanvas.height));
      requestAnimationFrame(animateTools);
  }
- 
+
+function animateLibFrame() {
+     ctx3.clearRect(0, 0, librariesCanvas.width, librariesCanvas.height);
+     libFrameCircles.forEach(circle => circle.update(libFrameCircles, librariesCanvas.width, librariesCanvas.height));
+     requestAnimationFrame(animateLibFrame);
+ }
+
  // Initialize
  createLanguageCircles();
  createToolCircles();
+ createLibFrameCircles(); 
  animateLanguages();
  animateTools();
- 
+ animateLibFrame();
+
  // Add dragging functionality for both canvases
- [languagesCanvas, toolsCanvas].forEach(canvas => {
+ [languagesCanvas, toolsCanvas, librariesCanvas].forEach(canvas => {
      canvas.addEventListener('mousedown', (e) => {
          const mouseX = e.offsetX;
          const mouseY = e.offsetY;
-         const circles = canvas === languagesCanvas ? languageCircles : toolCircles;
-         const ctx = canvas === languagesCanvas ? ctx1 : ctx2;
+         const circles = canvas === languagesCanvas ? languageCircles : canvas === toolsCanvas ? toolCircles : libFrameCircles;
+         const ctx = canvas === languagesCanvas ? ctx1 : canvas === toolsCanvas ? ctx2 : ctx3;
  
          // Find the circle the user is trying to drag
          circles.forEach(circle => {
