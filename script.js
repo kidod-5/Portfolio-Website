@@ -168,11 +168,11 @@
      const tools = [
          { label: 'Unix', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unix/unix-original.svg' },
          { label: 'Git', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-         { label: 'Github', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg' },
+         { label: 'Github', imgSrc: 'https://devicon-website.vercel.app/api/github/original.svg?color=%23837C7C' },
          { label: 'Eclipse', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eclipse/eclipse-original.svg' },
          { label: 'VSCode', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
          { label: 'MongoDB', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
-         {label: 'NPM', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg'},
+         { label: 'NPM', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg'},
      ];
  
      tools.forEach(tool => {
@@ -190,8 +190,8 @@
          { label: 'Matplotlib', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg' },
          { label: 'Cv2', imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg' },
          {label: 'React', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg'},
-         {label: 'Node.js', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg'},
-         {label: 'Express', imgSrc: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg'},
+         {label: 'Node.js', imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg'},
+         {label: 'Express', imgSrc: 'https://devicon-website.vercel.app/api/express/original.svg?color=%23A69999'},
      ];
  
      tools.forEach(tool => {
