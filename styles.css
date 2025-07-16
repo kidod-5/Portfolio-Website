@@ -1,8 +1,13 @@
+/* ========================================
+   GLOBAL STYLES & ANIMATIONS
+======================================== */
+
+/* Smooth scrolling behavior */
 html {
     scroll-behavior: smooth;
 }
 
-
+/* Body and background grid animation */
 body {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
@@ -12,6 +17,7 @@ body {
     position: relative;
 }
 
+/* Animated grid background */
 body::before {
     content: "";
     position: fixed;
@@ -31,6 +37,9 @@ body::before {
     to { transform: translate(-50px, -50px); }
 }
 
+/* ========================================
+   HEADER & NAVIGATION
+======================================== */
 
 header {
     background-color: black;
@@ -39,6 +48,7 @@ header {
     border-bottom: 1px solid #00FF00;
 }
 
+/* Sticky navigation */
 nav {
     position: sticky;
     top: 0;
@@ -69,19 +79,10 @@ nav ul li a:hover {
     text-shadow: 0 0 10px #00FF00;
     color: #000000;
 }
-section {
-    margin-bottom: 40px;
-    border: 1px solid #00FF00;
-    padding: 10px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
 
-.section-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* ========================================
+   TYPED WELCOME MESSAGE
+======================================== */
 
 .typed-message h1 {
     font-size: 3em;
@@ -108,6 +109,28 @@ section {
     50% { border-color: #00FF00; }
 }
 
+/* ========================================
+   SECTION STYLES & HEADINGS
+======================================== */
+
+/* General section styling */
+section {
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #00FF00;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Glowing section headings */
 h2 {
     color: #00FF00;
     position: relative;
@@ -125,79 +148,20 @@ main {
     padding: 20px;
 }
 
+/* ========================================
+   SKILLS SECTION & CANVAS ANIMATIONS
+======================================== */
 
-
-/* Scroll to Top Button */
-#scrollTopBtn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #00FF00;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: black;
-    color: #00FF00;
-    border-top: 1px solid #00FF00;
-}
-
-.skills-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #00FF00;
-}
-
-.skills-section {
-    width: 45%;
-}
-
-#skillsCanvas {
-    display: block;
-    border: 1px solid #00FF00;
-    width: 100%;
-    height: 300px;
-    background-color: black;
-}
-
-/* Make room for coursework */
-.relevant-coursework {
-    margin-top: 40px;
-    padding: 10px;
-    border: 1px solid #00FF00;
-}
-
-.relevant-coursework p {
-    line-height: 1.6;
-}
-
-/* General section styling */
-section {
-    max-width: 1200px; /* Matches the width of other sections */
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Specific styling for the skills container */
 .skills-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-    width: 100%; /* Full width, within the section constraints */
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
+    border: 1px solid #00FF00;
 }
 
 /* Canvas wrapper (for each canvas inside the skills section) */
@@ -228,35 +192,163 @@ canvas {
     background-color: black;
     border: 1px solid #00FF00;
     width: 100%;
-    max-width: 400px; /* Ensure canvases don't stretch too wide */
+    max-width: 400px;
     height: 300px;
-    margin-top: 10px; /* Space between title and canvas */
+    margin-top: 10px;
 }
 
-/* Responsive behavior: shrink the gap as the window size decreases */
-@media (max-width: 900px) {
-    .skills-container {
-        gap: 10px;
+/* Relevant coursework section */
+.relevant-coursework {
+    margin-top: 40px;
+    padding: 10px;
+    border: 1px solid #00FF00;
+}
+
+.relevant-coursework p {
+    line-height: 1.6;
+}
+
+/* ========================================
+   PROJECT CARDS - RETRO EFFECT
+======================================== */
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Main project card styling with 3D shadow effect */
+.project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid #00FF00;
+    padding: 20px;
+    border-radius: 8px;
+    background: rgba(0, 255, 0, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        4px 4px 0px #006600,
+        8px 8px 0px #003300,
+        0 0 20px rgba(0, 255, 0, 0.2);
+    transition: all 0.8s linear;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Border effect for cards */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00FF00, #00AA00, #00FF00);
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.8s linear;
+}
+
+/* Card hover effects */
+.project-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 
+        8px 8px 0px #006600,
+        12px 12px 0px #003300,
+        16px 16px 0px #001100,
+        0 0 30px rgba(0, 255, 0, 0.4);
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.project-card:hover::before {
+    opacity: 0.3;
+}
+
+/* Card click/active effects - creates flash animation */
+.project-card:active {
+    transform: translate(0px, 0px);
+    box-shadow: 
+        2px 2px 0px #006600,
+        0 0 20px rgba(255, 255, 255, 0.8);
+    animation: rigidFlash 0.1s linear;
+}
+
+@keyframes rigidFlash {
+    0% { 
+        background: rgba(255, 255, 255, 0.9);
+        border-color: #FFFFFF;
+    }
+    100% { 
+        background: rgba(0, 255, 0, 0.1);
+        border-color: #00FF00;
     }
 }
 
-/* Stack the canvases vertically when the window size is smaller */
-@media (max-width: 700px) {
-    .skills-container {
-        flex-direction: column;
-        align-items: center; /* Center the canvases when stacked */
-    }
-
-    .canvas-wrapper {
-        width: 100%; /* Full width when stacked */
-    }
-
-    canvas {
-        max-width: 100%; /* Ensure canvases fill the width of the container */
-    }
+/* Project image styling */
+.project-image {
+    margin-bottom: 15px;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-/* Social Media Section */
+.project-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid #00FF00;
+    border-radius: 4px;
+    transition: all 0.8s linear;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.02);
+    box-shadow: 2px 2px 0px #006600;
+}
+
+/* Project content text styling */
+.project-content h3 {
+    margin: 0 0 10px 0;
+    color: #00FF00;
+    text-shadow: 2px 2px 0px #006600;
+    transition: all 0.8s linear;
+}
+
+.project-card:hover .project-content h3 {
+    color: #FFFFFF;
+    text-shadow: 2px 2px 0px #008800;
+}
+
+.co-creator {
+    font-size: 0.8em;
+    color: #888;
+    font-style: italic;
+    transition: color 0.8s linear;
+}
+
+.project-card:hover .co-creator {
+    color: #BBB;
+}
+
+.tech-stack {
+    margin: 0;
+    color: #888;
+    font-size: 0.9em;
+    transition: color 0.8s linear;
+}
+
+.project-card:hover .tech-stack {
+    color: #AAA;
+}
+
+/* ========================================
+   CONTACT & SOCIAL MEDIA SECTION
+======================================== */
+
 #contact-info {
     text-align: center;
     padding: 20px;
@@ -275,7 +367,7 @@ canvas {
     margin-top: 20px;
 }
 
-/* Style for each icon */
+/* Style for each social media icon */
 .social-icon {
     color: #00FF00;
     font-size: 2em;
@@ -285,4 +377,59 @@ canvas {
 
 .social-icon:hover {
     color: #FFFFFF;
+}
+
+/* ========================================
+   UTILITY COMPONENTS
+======================================== */
+
+/* Scroll to top button */
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00FF00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: black;
+    color: #00FF00;
+    border-top: 1px solid #00FF00;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+/* Tablet breakpoint */
+@media (max-width: 900px) {
+    .skills-container {
+        gap: 10px;
+    }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 700px) {
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .canvas-wrapper {
+        width: 100%;
+    }
+
+    canvas {
+        max-width: 100%;
+    }
 }
