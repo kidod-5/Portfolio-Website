@@ -8,13 +8,18 @@
  const ctx2 = toolsCanvas.getContext('2d');
  const ctx3 = librariesCanvas.getContext('2d');
 
- // Set canvas sizes
- languagesCanvas.width = languagesCanvas.offsetWidth;
- languagesCanvas.height = 300;
- toolsCanvas.width = toolsCanvas.offsetWidth;
- toolsCanvas.height = 300;
- librariesCanvas.width = librariesCanvas.offsetWidth;
- librariesCanvas.height = 300;
+ // Set canvas sizes based on their containers
+ function setCanvasSizes() {
+     languagesCanvas.width = languagesCanvas.offsetWidth;
+     languagesCanvas.height = languagesCanvas.offsetHeight || 300;
+     toolsCanvas.width = toolsCanvas.offsetWidth;
+     toolsCanvas.height = toolsCanvas.offsetHeight || 300;
+     librariesCanvas.width = librariesCanvas.offsetWidth;
+     librariesCanvas.height = librariesCanvas.offsetHeight || 300;
+ }
+ 
+ // Initial canvas sizing
+ setCanvasSizes();
 
  const gravity = 0.2;
  const bounceFactor = 0.7;
@@ -286,10 +291,13 @@ function animateLibFrame() {
  
  // Resize canvases when window resizes
  window.addEventListener('resize', () => {
-     languagesCanvas.width = languagesCanvas.offsetWidth;
-     languagesCanvas.height = 300;
-     toolsCanvas.width = toolsCanvas.offsetWidth;
-     toolsCanvas.height = 300;
+     // Debounce resize events to improve performance
+     clearTimeout(window.resizeTimeout);
+     window.resizeTimeout = setTimeout(() => {
+         setCanvasSizes();
+         // Redraw all canvases after resize
+         updateCanvas();
+     }, 100);
  });
  
  
