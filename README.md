@@ -41,7 +41,6 @@ The site includes:
 - **Design Inspiration**:
   - Retro terminal/console UI
   - Green-on-black themes from early UNIX systems
-  - Hacker aesthetics and minimalism
 
 - **Development Goals**:
   - Learn how to structure and style a static site
